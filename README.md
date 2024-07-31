@@ -1,2 +1,2 @@
-# sprint7
-API Testing training project
+# Sprint 7 final project. API Testing
+
