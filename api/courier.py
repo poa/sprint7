@@ -27,7 +27,8 @@ class CourierAPI:
         if self.id is not None:
             CourierAPI.delete_by_id(self.id)
         else:
-            self.delete_by_login()
+            print(f'Deleting Courier: {self.login}')
+            self.delete()
 
     @staticmethod
     def get_payload(login=None, password=None, first_name=None):
@@ -61,9 +62,28 @@ class CourierAPI:
         resp = requests.delete(url)
         return resp
 
+    def do_login(self):
+        resp = self.login_courier(self.login, self.password)
+        self.last_status = resp.status_code
+        self.last_msg = resp.text
+        if self.last_status == RS.OK:
+            self.id = resp.json()["id"]
+            return True
+
+        return False
+
     def delete(self):
         if self.is_registered:
-            resp = CourierAPI.login_courier(self.login, self.password)
-            if resp.status_code == RS.OK:
-                resp = CourierAPI.delete_by_id(self.id)
-                return resp
+            if self.id is None:
+                result = self.do_login()
+                if result is not True:
+                    return False
+
+            resp = self.delete_by_id(self.id)
+            self.last_status = resp.status_code
+            self.last_msg = resp.text
+
+            if self.last_status == RS.OK:
+                return True
+
+            return False

@@ -6,7 +6,7 @@ from api.courier import CourierAPI
 # form ya_scooter_api import
 
 
-@pytest.fixture
+@pytest.fixture(scope='function')
 def test_data():
     data = TestData()
     yield data

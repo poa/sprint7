@@ -32,6 +32,10 @@ class ResponseStatus(enum.IntEnum):
     SERVICE_UNAVAILABLE = 503
 
 
+class ResponseMessage:
+    OK = '{"ok":true}'
+
+
 class TestConstants:
     rent_periods = [
         "сутки",
@@ -53,3 +57,5 @@ class TestConstants:
     ]
 
     scooter_colors = ["black", "grey"]
+
+    password = "P@ssw0rd"

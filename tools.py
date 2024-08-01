@@ -39,10 +39,10 @@ class DataGenerator:
         return self.address
 
     def new_name(self):
-        self.name = self.fake.name().replace("-", "")
-        self.first_name = self.name.split()[:1]
-        self.last_name = self.name.split()[-1:]
-        self.login = translit(f"{self.first_name}_{self.last_name}")
+        self.first_name = self.fake.first_name_male().replace("-", "")
+        self.last_name = self.fake.last_name_male().replace("-", "")
+        self.name = self.first_name + " " + self.last_name
+        self.login = translit(self.name).replace(" ","_").lower()
         return self.name
 
     def new_email(self):
