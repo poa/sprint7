@@ -1,38 +1,80 @@
-import requests
-import random
-import string
+from datetime import datetime, timedelta
+from faker import Faker
+from random import choice
+from unidecode import unidecode as translit
+
+from const import TestConstants as TC
 
 
-# метод регистрации нового курьера возвращает список из логина и пароля
-# если регистрация не удалась, возвращает пустой список
-def register_new_courier_and_return_login_password():
-    # метод генерирует строку, состоящую только из букв нижнего регистра, в качестве параметра передаём длину строки
-    def generate_random_string(length):
-        letters = string.ascii_lowercase
-        random_string = "".join(random.choice(letters) for i in range(length))
-        return random_string
+class DataGenerator:
+    def __init__(self):
+        self.fake = Faker(["ru_RU"])
+        self.address = ""
+        self.email = ""
+        self.name = ""
+        self.first_name = ""
+        self.last_name = ""
+        self.login = ""
+        self.password = ""
+        self.phone = ""
+        self.comment = ""
+        self.date = ""
+        self.metro_station = ""
+        self.rent_period = ""
+        self.scooter_color = ""
 
-    # создаём список, чтобы метод мог его вернуть
-    login_pass = []
+        self.new_address()
+        self.new_email()
+        self.new_name()
+        self.new_password()
+        self.new_phone()
+        self.new_comment()
+        self.new_date()
+        self.new_metro_station()
+        self.new_rent_period()
+        self.new_scooter_color()
 
-    # генерируем логин, пароль и имя курьера
-    login = generate_random_string(10)
-    password = generate_random_string(10)
-    first_name = generate_random_string(10)
+    def new_address(self):
+        self.address = self.fake.street_address().replace("/", "")
+        return self.address
 
-    # собираем тело запроса
-    payload = {"login": login, "password": password, "firstName": first_name}
+    def new_name(self):
+        self.name = self.fake.name().replace("-", "")
+        self.first_name = self.name.split()[:1]
+        self.last_name = self.name.split()[-1:]
+        self.login = translit(f"{self.first_name}_{self.last_name}")
+        return self.name
 
-    # отправляем запрос на регистрацию курьера и сохраняем ответ в переменную response
-    response = requests.post(
-        "https://qa-scooter.praktikum-services.ru/api/v1/courier", data=payload
-    )
+    def new_email(self):
+        self.email = self.fake.email()
+        return self.email
 
-    # если регистрация прошла успешно (код ответа 201), добавляем в список логин и пароль курьера
-    if response.status_code == 201:
-        login_pass.append(login)
-        login_pass.append(password)
-        login_pass.append(first_name)
+    def new_password(self):
+        self.password = self.fake.password(length=8, special_chars=False)
+        return self.password
 
-    # возвращаем список
-    return login_pass
+    def new_phone(self):
+        self.phone = "+7" + str(self.fake.random_number(10, True))
+        return self.phone
+
+    def new_comment(self):
+        self.comment = self.fake.sentence()
+        return self.comment
+
+    def new_date(self):
+        start_date = datetime.today()
+        end_date = start_date + timedelta(days=7)
+        self.date = self.fake.date_between(start_date, end_date).__str__()
+        return self.date
+
+    def new_metro_station(self):
+        self.metro_station = choice(TC.metro_stations)
+        return self.metro_station
+
+    def new_rent_period(self):
+        self.rent_period = choice(TC.rent_periods)
+        return self.rent_period
+
+    def new_scooter_color(self):
+        self.scooter_color = choice(TC.scooter_colors)
+        return self.scooter_color
