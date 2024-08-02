@@ -1,0 +1,2 @@
+['gleb_lukin', 'P@ssw0rd']
+Deleting Courier: gleb_lukin
