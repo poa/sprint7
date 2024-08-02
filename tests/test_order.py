@@ -4,8 +4,6 @@ import pytest
 from api.orders import OrdersAPI
 from const import ResponseStatus as RS, TestConstants as TC
 
-allure.dynamic.suite("Тесты API для заказов (orders)")
-
 
 @pytest.mark.parametrize(
     "data_set",
