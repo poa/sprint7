@@ -12,8 +12,7 @@ def test_data():
     yield data
 
 
-@pytest.fixture(scope="session")
-def registered(test_data):
-    registered_courier = CourierAPI(*test_data.courier.existing_courier)
-    yield registered_courier
-    registered_courier.delete()
+@pytest.fixture(scope='function')
+def precreated_courier(test_data):
+    with CourierAPI(*test_data.courier.precreated) as precreated_courier:
+        yield precreated_courier

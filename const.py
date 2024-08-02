@@ -34,6 +34,8 @@ class ResponseStatus(enum.IntEnum):
 
 class ResponseMessage:
     OK = '{"ok":true}'
+    ACCOUNT_NOT_FOUND = '{"code":404,"message":"Учетная запись не найдена"}'
+    NOT_ENOUGH_DATA_FOR_LOGIN = '{"code":400,"message":"Недостаточно данных для входа"}'
 
 
 class TestConstants:

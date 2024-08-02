@@ -24,21 +24,14 @@ class CourierAPI:
         return self
 
     def __exit__(self, *args):
-        if self.id is not None:
-            CourierAPI.delete_by_id(self.id)
-        else:
-            print(f'Deleting Courier: {self.login}')
-            self.delete()
+        self.delete()
 
     @staticmethod
     def get_payload(login=None, password=None, first_name=None):
         pl = {}
-        if login is not None:
-            pl["login"] = login
-        if password is not None:
-            pl["password"] = password
-        if first_name is not None:
-            pl["firstName"] = first_name
+        pl["login"] = login if login is not None else ""
+        pl["password"] = password if password is not None else ""
+        pl["firstName"] = first_name if first_name is not None else ""
 
         return pl
 
@@ -74,6 +67,7 @@ class CourierAPI:
 
     def delete(self):
         if self.is_registered:
+            print(f'Deleting Courier: {self.login}')
             if self.id is None:
                 result = self.do_login()
                 if result is not True:
@@ -84,6 +78,7 @@ class CourierAPI:
             self.last_msg = resp.text
 
             if self.last_status == RS.OK:
+                self.is_registered = False
                 return True
 
             return False
