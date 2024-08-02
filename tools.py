@@ -20,7 +20,8 @@ class DataGenerator:
         self.comment = ""
         self.date = ""
         self.metro_station = ""
-        self.rent_period = ""
+        self.rent_period_text = ""
+        self.rent_period_int = None
         self.scooter_color = ""
 
         self.new_address()
@@ -72,8 +73,9 @@ class DataGenerator:
         return self.metro_station
 
     def new_rent_period(self):
-        self.rent_period = choice(TC.rent_periods)
-        return self.rent_period
+        self.rent_period_text = choice(TC.rent_periods)
+        self.rent_period_int = 1 + TC.rent_periods.index(self.rent_period_text)
+        return self.rent_period_int
 
     def new_scooter_color(self):
         self.scooter_color = choice(TC.scooter_colors)
