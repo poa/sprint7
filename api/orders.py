@@ -1,3 +1,4 @@
+import allure
 import requests
 
 from const import (
@@ -44,7 +45,7 @@ class OrdersAPI:
         return self
 
     def __exit__(self, *args):
-        # self.delete()
+        self.cancel(self.track)
         pass
 
     @staticmethod
@@ -81,7 +82,22 @@ class OrdersAPI:
         return payload
 
     @staticmethod
+    @allure.step("Создание заказа")
     def create_order(payload):
         url = f"{API_URI}/{EP.orders}"
         resp = requests.post(url, json=payload)
         return resp
+
+    @staticmethod
+    @allure.step("Получение списка заказов")
+    def get_orders(params=None):
+        url = f"{API_URI}/{EP.orders}"
+        resp = requests.get(url, params=params)
+        return resp
+
+    @staticmethod
+    @allure.step("Отмена заказа")
+    def cancel(track_id):
+        # `cancel` endpoint doesn't work as described in API doc
+        # and there is no any `delete` endpoint
+        pass

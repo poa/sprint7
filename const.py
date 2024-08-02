@@ -63,3 +63,4 @@ class TestConstants:
 
     password = "P@ssw0rd"
     nonexistent_courier_id = 1
+    order_list_params = {"limit": 10, "page": 0}

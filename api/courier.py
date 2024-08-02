@@ -1,3 +1,4 @@
+import allure
 import requests
 
 from const import (
@@ -37,6 +38,7 @@ class CourierAPI:
         return payload
 
     @staticmethod
+    @allure.step("Создание курьера")
     def create_courier(login, password, first_name):
         url = f"{API_URI}/{EP.courier}"
         payload = CourierAPI.get_payload(login, password, first_name)
@@ -44,6 +46,7 @@ class CourierAPI:
         return resp
 
     @staticmethod
+    @allure.step("Авторизация курьера")
     def login_courier(login, password):
         url = f"{API_URI}/{EP.courier_login}"
         payload = CourierAPI.get_payload(login, password)
@@ -51,6 +54,7 @@ class CourierAPI:
         return resp
 
     @staticmethod
+    @allure.step("Удаление курьера")
     def delete_by_id(courier_id):
         url = f"{API_URI}/{EP.courier}/{courier_id}"
         resp = requests.delete(url)
