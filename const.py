@@ -34,8 +34,9 @@ class ResponseStatus(enum.IntEnum):
 
 class ResponseMessage:
     OK = '{"ok":true}'
-    ACCOUNT_NOT_FOUND = '{"code":404,"message":"Учетная запись не найдена"}'
+    LOGIN_NOT_FOUND = '{"code":404,"message":"Учетная запись не найдена"}'
     NOT_ENOUGH_DATA_FOR_LOGIN = '{"code":400,"message":"Недостаточно данных для входа"}'
+    DELETE_NO_NOTFOUND = '{"code":404,"message":"Курьера с таким id нет."}'
 
 
 class TestConstants:
@@ -61,3 +62,4 @@ class TestConstants:
     scooter_colors = ["black", "grey"]
 
     password = "P@ssw0rd"
+    nonexistent_courier_id = 1

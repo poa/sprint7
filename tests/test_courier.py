@@ -1,7 +1,7 @@
 import pytest
 
 from api.courier import CourierAPI
-from const import ResponseStatus as RS, ResponseMessage as RespMsg
+from const import ResponseStatus as RS, ResponseMessage as RespMsg, TestConstants as TC
 
 
 def test_courier_create_complete_courier_data(test_data):
@@ -49,14 +49,14 @@ def test_courier_login_wrong_password_not_found(precreated_courier):
     courier_data = [precreated_courier.login, "bad_password"]
     resp = CourierAPI.login_courier(*courier_data)
     print(courier_data, resp.status_code)
-    assert resp.status_code == RS.NOT_FOUND and resp.text == RespMsg.ACCOUNT_NOT_FOUND
+    assert resp.status_code == RS.NOT_FOUND and resp.text == RespMsg.LOGIN_NOT_FOUND
 
 
 def test_courier_login_nonexistent_failed(test_data):
     courier_data = test_data.courier.complete[:2]
     resp = CourierAPI.login_courier(*courier_data)
     print(courier_data, resp.status_code)
-    assert resp.status_code == RS.NOT_FOUND and resp.text == RespMsg.ACCOUNT_NOT_FOUND
+    assert resp.status_code == RS.NOT_FOUND and resp.text == RespMsg.LOGIN_NOT_FOUND
 
 
 def test_courier_delete_existent_successful(precreated_courier):
@@ -66,3 +66,9 @@ def test_courier_delete_existent_successful(precreated_courier):
         and precreated_courier.last_status == RS.OK
         and precreated_courier.last_msg == RespMsg.OK
     )
+    
+def test_courier_delete_nonexistent_failed():
+
+    resp = CourierAPI.delete_by_id(TC.nonexistent_courier_id)
+    print(f"id: {TC.nonexistent_courier_id}, status: {resp.status_code}")
+    assert resp.status_code == RS.NOT_FOUND and resp.text == RespMsg.DELETE_NO_NOTFOUND
