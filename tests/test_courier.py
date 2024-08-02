@@ -4,6 +4,8 @@ import pytest
 from api.courier import CourierAPI
 from const import ResponseStatus as RS, ResponseMessage as RespMsg, TestConstants as TC
 
+allure.dynamic.suite("Тесты API для курьеров (courier)")
+
 
 @allure.title("Создание курьера с полным набором корректных данных. Ожидаем успех")
 def test_courier_create_complete_courier_data_successful(test_data):

@@ -2,7 +2,9 @@ import allure
 import pytest
 
 from api.orders import OrdersAPI
-from const import ResponseStatus as RS, ResponseMessage as RespMsg, TestConstants as TC
+from const import ResponseStatus as RS, TestConstants as TC
+
+allure.dynamic.suite("Тесты API для заказов (orders)")
 
 
 @pytest.mark.parametrize(
@@ -31,7 +33,4 @@ def test_orders_list_with_limit():
     resp = OrdersAPI.get_orders(TC.order_list_params)
     orders = resp.json()["orders"]
     print(f"\n{resp.status_code}: {len(orders)}")
-    assert (
-        resp.status_code == RS.OK
-        and len(orders) == TC.order_list_params["limit"]
-    )
+    assert resp.status_code == RS.OK and len(orders) == TC.order_list_params["limit"]

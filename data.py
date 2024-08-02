@@ -1,5 +1,5 @@
-from tools import DataGenerator
 from const import TestConstants as TC
+from tools import DataGenerator
 
 
 class CourierData:

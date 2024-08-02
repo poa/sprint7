@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
-from faker import Faker
 from random import choice
+
+from faker import Faker
 from unidecode import unidecode as translit
 
 from const import TestConstants as TC

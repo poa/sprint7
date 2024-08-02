@@ -1,7 +1,8 @@
 import pytest
 
-from data import TestData
 from api.courier import CourierAPI
+from data import TestData
+
 
 # form ya_scooter_api import
 
