@@ -21,7 +21,7 @@ class OrderData:
     def __init__(self):
         data = DataGenerator()
 
-        self.complete_set_no_color = [
+        complete_set_base = [
             data.first_name,
             data.last_name,
             data.address,
@@ -30,43 +30,12 @@ class OrderData:
             data.rent_period_int,
             data.date,
             data.comment,
-            None,
         ]
 
-        self.complete_set_black_color = [
-            data.first_name,
-            data.last_name,
-            data.address,
-            data.metro_station,
-            data.phone,
-            data.rent_period_int,
-            data.date,
-            data.comment,
-            TC.scooter_colors[0],
-        ]
-        self.complete_set_grey_color = [
-            data.first_name,
-            data.last_name,
-            data.address,
-            data.metro_station,
-            data.phone,
-            data.rent_period_int,
-            data.date,
-            data.comment,
-            TC.scooter_colors[1],
-        ]
-
-        self.complete_set_both_color = [
-            data.first_name,
-            data.last_name,
-            data.address,
-            data.metro_station,
-            data.phone,
-            data.rent_period_int,
-            data.date,
-            data.comment,
-            TC.scooter_colors,
-        ]
+        self.complete_set_no_color = complete_set_base + [None]
+        self.complete_set_black_color = complete_set_base + [TC.scooter_colors[0]]
+        self.complete_set_grey_color = complete_set_base + [TC.scooter_colors[1]]
+        self.complete_set_both_color = complete_set_base + [TC.scooter_colors]
 
 
 class TestData:
