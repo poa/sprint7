@@ -40,7 +40,7 @@ class CourierAPI:
     @staticmethod
     @allure.step("Создание курьера")
     def create_courier(login, password, first_name):
-        url = f"{API_URI}/{EP.courier}"
+        url = f"{API_URI}/{EP.COURIER}"
         payload = CourierAPI.get_payload(login, password, first_name)
         resp = requests.post(url, json=payload)
         return resp
@@ -48,7 +48,7 @@ class CourierAPI:
     @staticmethod
     @allure.step("Авторизация курьера")
     def login_courier(login, password):
-        url = f"{API_URI}/{EP.courier_login}"
+        url = f"{API_URI}/{EP.COURIER_LOGIN}"
         payload = CourierAPI.get_payload(login, password)
         resp = requests.post(url, json=payload)
         return resp
@@ -56,7 +56,7 @@ class CourierAPI:
     @staticmethod
     @allure.step("Удаление курьера")
     def delete_by_id(courier_id):
-        url = f"{API_URI}/{EP.courier}/{courier_id}"
+        url = f"{API_URI}/{EP.COURIER}/{courier_id}"
         resp = requests.delete(url)
         return resp
 

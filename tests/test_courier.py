@@ -79,6 +79,6 @@ def test_courier_delete_existent_successful(precreated_courier):
 
 @allure.title("Удаление несуществующего пользователя. Ожидаем ошибку")
 def test_courier_delete_nonexistent_failed():
-    resp = CourierAPI.delete_by_id(TC.nonexistent_courier_id)
-    print(f"id: {TC.nonexistent_courier_id}, status: {resp.status_code}")
+    resp = CourierAPI.delete_by_id(TC.NONEXISTENT_COURIER_ID)
+    print(f"id: {TC.NONEXISTENT_COURIER_ID}, status: {resp.status_code}")
     assert resp.status_code == RS.NOT_FOUND and resp.text == RespMsg.DELETE_NO_NOTFOUND

@@ -6,14 +6,14 @@ API_URI = f"{APP_URL}/api/v1"
 
 
 class Endpoints:
-    courier = "courier"
-    courier_login = f"{courier}/login"
+    COURIER = "courier"
+    COURIER_LOGIN = f"{COURIER}/login"
 
-    orders = "orders"
-    orders_accept = f"{orders}/accept"
-    orders_cancel = f"{orders}/cancel"
-    orders_finish = f"{orders}/finish"
-    orders_track = f"{orders}/track"
+    ORDERS = "orders"
+    ORDERS_ACCEPT = f"{ORDERS}/accept"
+    ORDERS_CANCEL = f"{ORDERS}/cancel"
+    ORDERS_FINISH = f"{ORDERS}/finish"
+    ORDERS_TRACK = f"{ORDERS}/track"
 
 
 class ResponseStatus(enum.IntEnum):
@@ -40,7 +40,7 @@ class ResponseMessage:
 
 
 class TestConstants:
-    rent_periods = [
+    RENT_PERIODS = [
         "сутки",
         "двое суток",
         "трое суток",
@@ -50,7 +50,7 @@ class TestConstants:
         "семеро суток",
     ]
 
-    metro_stations = [
+    METRO_STATIONS = [
         "Сокольники",
         "Красносельская",
         "Комсомольская",
@@ -59,8 +59,8 @@ class TestConstants:
         "Юго-Западная",
     ]
 
-    scooter_colors = ["black", "grey"]
+    SCOOTER_COLORS = ["black", "grey"]
 
-    password = "P@ssw0rd"
-    nonexistent_courier_id = 1
-    order_list_params = {"limit": 10, "page": 0}
+    PASSWORD = "P@ssw0rd"
+    NONEXISTENT_COURIER_ID = 1
+    ORDER_LIST_PARAMS = {"limit": 10, "page": 0}

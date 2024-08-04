@@ -70,14 +70,14 @@ class DataGenerator:
         return self.date
 
     def new_metro_station(self):
-        self.metro_station = choice(TC.metro_stations)
+        self.metro_station = choice(TC.METRO_STATIONS)
         return self.metro_station
 
     def new_rent_period(self):
-        self.rent_period_text = choice(TC.rent_periods)
-        self.rent_period_int = 1 + TC.rent_periods.index(self.rent_period_text)
+        self.rent_period_text = choice(TC.RENT_PERIODS)
+        self.rent_period_int = 1 + TC.RENT_PERIODS.index(self.rent_period_text)
         return self.rent_period_int
 
     def new_scooter_color(self):
-        self.scooter_color = choice(TC.scooter_colors)
+        self.scooter_color = choice(TC.SCOOTER_COLORS)
         return self.scooter_color

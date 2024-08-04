@@ -84,14 +84,14 @@ class OrdersAPI:
     @staticmethod
     @allure.step("Создание заказа")
     def create_order(payload):
-        url = f"{API_URI}/{EP.orders}"
+        url = f"{API_URI}/{EP.ORDERS}"
         resp = requests.post(url, json=payload)
         return resp
 
     @staticmethod
     @allure.step("Получение списка заказов")
     def get_orders(params=None):
-        url = f"{API_URI}/{EP.orders}"
+        url = f"{API_URI}/{EP.ORDERS}"
         resp = requests.get(url, params=params)
         return resp
 

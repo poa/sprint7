@@ -7,14 +7,14 @@ class CourierData:
     def __init__(self):
         data = DataGenerator()
 
-        self.precreated = [data.login, TC.password, data.first_name]
+        self.precreated = [data.login, TC.PASSWORD, data.first_name]
 
         data.new_name()
-        self.complete = [data.login, TC.password, data.first_name]
+        self.complete = [data.login, TC.PASSWORD, data.first_name]
 
         self.no_password = [data.login, None, data.first_name]
-        self.no_login = [None, TC.password, data.first_name]
-        self.no_name = [data.login, TC.password, None]
+        self.no_login = [None, TC.PASSWORD, data.first_name]
+        self.no_name = [data.login, TC.PASSWORD, None]
 
 
 class OrderData:
@@ -33,9 +33,9 @@ class OrderData:
         ]
 
         self.complete_set_no_color = complete_set_base + [None]
-        self.complete_set_black_color = complete_set_base + [TC.scooter_colors[0]]
-        self.complete_set_grey_color = complete_set_base + [TC.scooter_colors[1]]
-        self.complete_set_both_color = complete_set_base + [TC.scooter_colors]
+        self.complete_set_black_color = complete_set_base + [TC.SCOOTER_COLORS[0]]
+        self.complete_set_grey_color = complete_set_base + [TC.SCOOTER_COLORS[1]]
+        self.complete_set_both_color = complete_set_base + [TC.SCOOTER_COLORS]
 
 
 class TestData:
