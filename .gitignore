@@ -1,6 +1,6 @@
 # custom
-!/target/allure-results/
-/target/allure-results/*
+!allure-results/
+allure-results/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,0 +1,2 @@
+["german_vorob'ev", 'P@ssw0rd', 'Герман']
+Deleting Courier: german_vorob'ev
